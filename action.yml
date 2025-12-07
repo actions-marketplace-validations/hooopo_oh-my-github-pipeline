@@ -11,6 +11,7 @@ inputs:
   access-token:
     description: 'GitHub access token'
     required: true
+    default: ${{ github.token }}
   user-login:
     description: 'User login to sync'
     required: true
@@ -25,6 +26,6 @@ runs:
   # Pass the inputs and secret values as environment variables to the Docker container
   env:
     DATABASE_URL: ${{ inputs.database-url }}
-    ACCESS_TOKEN: ${{ inputs.access-token || secrets.GITHUB_TOKEN }}
+    ACCESS_TOKEN: ${{ inputs.access-token }}
     USER_LOGIN: ${{ inputs.user-login }}
     OPENAI_TOKEN: ${{ inputs.openai-token }}

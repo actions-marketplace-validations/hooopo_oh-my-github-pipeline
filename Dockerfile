@@ -1,5 +1,5 @@
 # Use an Ubuntu-based Ruby image
-FROM ruby:3.2
+FROM ruby:3.2-buster
 
 # Set the working directory
 WORKDIR /
@@ -26,7 +26,7 @@ COPY . .
 
 # Install dependencies
 RUN bundle config set --local without 'development test' && \
-    bundle install --jobs $(nproc) --retry 3 && \
+    bundle install --jobs $(nproc) --retry 10 && \
     rm -rf /usr/local/bundle/cache/*.gem
 
 # Run the migration and sync GitHub Repo Data scripts
